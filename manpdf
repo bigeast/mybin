@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+
+for i in $*
+do
+	man -t $i | ps2pdf - > $i.pdf
+	echo "file ${i}.pdf generated successfully."
+done

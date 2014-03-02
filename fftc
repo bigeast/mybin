@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+fname=$1
+outname=${fname%.*}
+gcc -g -lstdc++ -lfftw3 -lm $1 -o $outname

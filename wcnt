@@ -1,0 +1,18 @@
+#!/usr/bin/perl -w
+my $s; my $x; my $y; my $ncword = 0; my $cword = 0;
+while (<>) {
+    $s = $_;
+    $x = () = $s =~ m/[\x00-\x7f]+?/g;
+    $y = () = $s =~ m/[^\x00-\x7f]+?/g;
+
+    $ncword += $x;
+    $cword += $y;
+}
+$cword /= 3;
+ 
+print "\t\tWord Count\n";
+print "\tNon-Chinese:\t$ncword\n";
+print "\tChinese:\t$cword\n";
+ 
+$s = $ncword + $cword;
+print "\tTotal:\t\t$s\n";

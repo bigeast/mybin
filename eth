@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+sudo ip link set eth0 down
+sudo ip link set eth0 up
+sudo dhcpcd -A eth0

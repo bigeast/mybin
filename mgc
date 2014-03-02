@@ -1,0 +1,31 @@
+#!/bin/bash
+
+#Version 1
+#fname=$1	#fname=outname.expand
+#expand=${fname#*.}	#	${1#*.} also works
+#outname=${fname%.*}
+#gcc -std=c99 -lm -Wall -g $1 -o $outname
+
+#Version 2
+fname=$1
+expand=${fname#*.}
+outname=${fname%.*}
+#echo $1
+#echo $expand
+#echo $outname
+case $expand in
+	'c') 
+		gcc -g -std=c99 -Wall -lm -lgmp $1 -o $outname;
+	;;
+
+	'cc'|'cpp'|'c++')
+		g++ -g $1 -o $outname;
+	;;
+
+	'java') 
+		javac $1;
+	;;
+
+	"*") 
+		echo "Unrecognized file type";
+esac

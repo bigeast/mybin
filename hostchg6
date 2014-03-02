@@ -1,0 +1,60 @@
+#!/bin/sh
+# Configure the mark line
+FILENAME=/etc/hosts
+MLINE=$(grep -n MLINE $FILENAME | cut -d':' -f1)
+
+ping6 -c 1 ipv6.google.com 1>/dev/null 2>/dev/null
+if [ $? == 0 ]; then
+	echo "IPv6 is on."
+	IPv6=1
+else
+	echo "IPv6 is off."
+	IPv6=0
+fi
+
+grep HOSTON $FILENAME 1>/dev/null 2>/dev/null
+if [ $? == 0 ]; then
+	echo "IPv6 host is on."
+	HOST=1
+else
+	echo "IPv6 host is off."
+	HOST=0
+fi
+
+
+case $# in
+	0)
+		if [[ $IPv6 == 1 && $HOST == 0 ]]; then
+			echo "***************"
+			echo "Turn host on..."
+			sudo sed -i "$MLINE,$ s/^#//" $FILENAME
+			sudo sed -i "$MLINE s/.*/###MLINE:HOSTON###/" $FILENAME
+			echo "...OK."
+		fi
+
+		if [[ $IPv6 == 0 && $HOST == 1 ]]; then
+			echo "***************"
+			echo "Turn host off..."
+			sudo sed -i "$MLINE,$ s/^/#/" $FILENAME
+			sudo sed -i "$MLINE s/.*/###MLINE:HOSTOFF###/" $FILENAME
+			echo "...OK."
+		fi
+
+		;;
+	2)
+		if [ $1 == "-c" ]; then
+			NMLINE=$2
+		fi
+		echo "Set mline to $2 ..."
+		sed -i "$MLINE s/.*//" $FILENAME
+		if [ $HOST == 1 ]; then
+			sudo sed -i "$NMLINE s/.*/###MLINE:HOSTON###/" $FILENAME
+		else
+			sudo sed -i "$NMLINE s/.*/###MLINE:HOSTOFF###/" $FILENAME
+		fi
+		echo "...OK."
+		;;
+	*)
+		BASENAME=$(basename $0)
+		echo -e "Usage:\f$BASENAME [-c [mline]]"
+esac

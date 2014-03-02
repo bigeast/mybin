@@ -1,0 +1,15 @@
+#/************************************************
+#Author:		bigeast
+#Time:		12/05/21 Mon 06:11:28 PM
+#State:		
+#Description:		
+#************************************************/
+#!/bin/bash
+echo -e "\n********************************\n"
+echo -e "\t\$# \f the number of augument is:\t\t$#"		#	the number of augument
+echo -e "\t\$@ \f auguments list  is:\t\t\t$@"		#	auguments list
+echo -e "\t\$* \f entire augument string is:\t\t$*"		#	entire augument string
+echo -e "\t\$? \f exit stat of last process is:\t$?"		#	exit stat of last process
+echo -e "\t\$$ \f process number is:\t\t\t$$"		#	process number
+echo -e "\t\$_ \f last augument is:\t\t$_"		#	last augument
+echo -e "\n********************************\n"

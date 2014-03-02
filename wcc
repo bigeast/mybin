@@ -1,0 +1,21 @@
+#!/bin/bash
+#l=`wc -l $1 | tr -d 'a-z.'`
+#	A+B=m	A+3B=c
+A=0
+B=0
+for i in $*
+do
+m=`wc -m $i | cut -d' ' -f 1`
+c=`wc -c $i | cut -d' ' -f 1`
+#B=$(( ($c-$m+$l)/2 ))
+#A=$(( $m-$l-$B ))
+b=$(( ( $c - $m ) / 2 ))
+a=$(( $m - $b ))
+A=$(( A + a ))
+B=$(( B + b ))
+echo -e "$i\t\t中文： $b --- 英文字母： $a"
+done
+echo -e "\t\tWord Count"
+echo -e "\tNon-Chinese:\t$A"
+echo -e "\tChinese:\t$B"
+echo -e "\tTotal:\t\t$(( $A + $B ))"
