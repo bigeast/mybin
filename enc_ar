@@ -1,16 +1,19 @@
 #!/bin/bash
-if [[ $# != 2 ]];then
-	echo -e "Usage:\fencrypted_archive [archive dir] [archive.gpg dir]"
+if [[ $# != 1 ]];then
+	echo -e "Usage:\fencrypted_archive [archive dir]"
 	exit 1
 fi
 
 TOBE_ARCHIVE="$1"
-ARCHIVE="$2/$(date +%F).tar.gz"
+DIR=$(dirname $TOBE_ARCHIVE) # or DIR=${TOBE_ARCHIVE%/*}
+BASE=$(basename $TOBE_ARCHIVE) # or BASE=${TOBE_ARCHIVE##*/}
+ARCHIVE="$BASE-$(date +%F-%s).tar.gz"
+cd $DIR
 if [[ -d $1 ]];then
-	tar zcvf $ARCHIVE $TOBE_ARCHIVE 1>/dev/null
+	tar zcvf $ARCHIVE $BASE 1>/dev/null
 	gpg -e -r bigeast $ARCHIVE
 	rm $ARCHIVE
-	echo -e "$ARCHIVE.gpg is ready!\t(Check it out in $2)"
+	echo -e "$ARCHIVE.gpg is ready!\t(Check it out in $DIR)"
 else
 	echo 'Not a directory!'
 	exit 2
