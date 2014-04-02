@@ -1,0 +1,17 @@
+#!/bin/bash
+OUTDIR="/home/bigeast/Desktop/try/ipalive"
+#BASEURL="222.25.191"
+#BASEURL="10.11.1"
+#BASEURL="121.15.171"
+BASEURL="59.66.120"
+time=`date +%F-%H:%M`
+FILENAME="$OUTDIR/$time"
+#echo $FILENAME
+#fping -a -g "$BASEURL".1 "$BASEURL".254  2>/dev/null >> "$FILENAME"
+fping -a -g  "$BASEURL".{1,254}  2>/dev/null >> "$FILENAME"
+num=`wc -l "$FILENAME" | awk '{print $1}'`
+#echo $num >> $FILENAME
+echo $num
+mv "$FILENAME" "$FILENAME($num)"
+FILENAME="$FILENAME($num)"
+sed -i "/$(myip)/ s/$/*myip*/" $FILENAME
