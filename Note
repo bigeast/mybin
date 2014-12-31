@@ -1,0 +1,14 @@
+#!/bin/bash
+# add word to a txt file
+# 2014-12-12-08:48:19
+dictFile=${1-~/clips.txt}
+word=$(xsel -b)
+if [ -z $word ];then
+	word=$(xsel)
+	zenity --info --text="word is not empty"
+fi
+echo "<Begin" >> $dictFile
+date +"%F %A %T" >> $dictFile
+echo $word >> $dictFile
+echo "End>" >> $dictFile
+zenity --info --text="Your text\n\"\"\"\n$word\n\"\"\"\nhas been added to $dictFile"
