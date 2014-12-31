@@ -17,7 +17,7 @@
 if [ $1 == "-o" ]; then
 	if [ -n $2 ]; then
 		sudo iwconfig wlan0 essid $2
-		sudo dhcpcd wlan0
+		sudo dhclient wlan0
 		exit
 	else
 		echo -e "If you want to connect to an open wireless network...\n Usage:\fwlan -o [essid]"
@@ -25,9 +25,9 @@ if [ $1 == "-o" ]; then
 	exit
 fi
 
-if [[ $1 == "reboot" ]]; then
+if [[ $1 == "restart" ]]; then
 	echo "Set wlan0 $1 ..."
-	sudo pkill dhcpcd
+	sudo pkill dhclient
 	sudo pkill wpa
 	sudo ip link set wlan0 down
 	sudo ip link set wlan0 up
@@ -36,7 +36,7 @@ if [[ $1 == "reboot" ]]; then
 fi
 if [[ $1 == "down" || $1 == "up" ]]; then
 	echo "Set wlan0 $1 ..."
-	sudo pkill dhcpcd
+	sudo pkill dhclient
 	sudo pkill wpa
 	sudo ip link set wlan0 $1
 	echo "...OK"
@@ -58,5 +58,5 @@ fi
 
 if [ -f $CONF_FILE ]; then
 	sudo wpa_supplicant -B -i wlan0 -D wext -c $CONF_FILE
-	sudo dhcpcd -A wlan0
+	sudo dhclient wlan0
 fi

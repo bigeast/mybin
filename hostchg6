@@ -41,6 +41,23 @@ case $# in
 		fi
 
 		;;
+	1)
+		if [[ $1 == "on" && $HOST == 0 ]]; then
+			echo "***************"
+			echo "Turn host on..."
+			sudo sed -i "$MLINE,$ s/^#//" $FILENAME
+			sudo sed -i "$MLINE s/.*/###MLINE:HOSTON###/" $FILENAME
+			echo "...OK."
+		fi
+		if [[ $1 == "off" && $HOST == 1 ]]; then
+			echo "***************"
+			echo "Turn host off..."
+			sudo sed -i "$MLINE,$ s/^/#/" $FILENAME
+			sudo sed -i "$MLINE s/.*/###MLINE:HOSTOFF###/" $FILENAME
+			echo "...OK."
+		fi
+
+		;;
 	2)
 		if [ $1 == "-c" ]; then
 			NMLINE=$2
