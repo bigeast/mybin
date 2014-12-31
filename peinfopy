@@ -1,0 +1,7 @@
+#!/bin/env python2
+import subprocess
+import sys
+
+subprocess.call(('wget --quiet https://projecteuler.net/profile/' + sys.argv[1] +'.png -O /tmp/' + sys.argv[1] +'.png').split(' '))
+subprocess.call(('feh /tmp/' + sys.argv[1] +'.png').split(' '))
+
