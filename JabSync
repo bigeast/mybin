@@ -15,7 +15,7 @@ if [[ "$Machine" == "x86_64" ]];then
 		echo "...OK!"
 	fi
 else
-	IPhead="166.111.66.125"
+	IPhead="166.111.65.45"
 	echo "$IPhead"
 	echo "Laptop to PC..."
 	rsync -avzPru -e 'ssh -p 8051' bigeast@$IPhead:$Path/JabRef/ /home/bigeast/JabRef/

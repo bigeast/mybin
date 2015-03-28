@@ -5,7 +5,6 @@ dictFile=${1-~/clips.txt}
 word=$(xsel -b)
 if [ -z $word ];then
 	word=$(xsel)
-	zenity --info --text="word is not empty"
 fi
 echo "<Begin" >> $dictFile
 date +"%F %A %T" >> $dictFile

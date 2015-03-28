@@ -24,7 +24,7 @@
 * wcnt
 	* Same as *wcc*,but write in Perl script.
 * peinfo, peinfopy
-	* View anyone's profile in [ProjectEuler](https://www.projecteuler.net)
+	* View anyone's profile in [ProjectEuler](https://projecteuler.net)
 * Note
 	* Take note. OK, it's just append the content in the clipboard to a file.  **But** I'll improve it later.
 * JabSync
@@ -33,6 +33,9 @@
 	* Need to change. Will dig into it later.
 * yuv
 	* Mplayer wrapper to view YUV files.
+* gitopen
+	* open git remote url in firefox.
+	* TODO: open a specific url by its remote name.
 
 ##Bash Manual
 * varible
