@@ -1,0 +1,3 @@
+#!/bin/bash
+URL=$(git remote -v | cut -f2 | cut -d" " -f1 | head -n1)
+firefox $URL
