@@ -1,0 +1,26 @@
+#!/bin/bash
+ATACKERS=$(journalctl -b -u sshguard.service | sed -nr '/danger/ s/.*Blocking ([^ ]+).*/\1/p'|sort -n|cut -d'.' -f1,2,3|uniq)
+BLACKLIST=/home/bigeast/mybin/ssh_blacklist
+CURR=/tmp/$$.rules
+if [[ -z $ATACKERS ]];then
+	echo "No atackers found."
+	exit
+fi
+
+sudo iptables-save > $CURR
+
+for blackIP in $ATACKERS
+do
+	grep -q $blackIP $CURR
+	if [[ $? -eq 1 ]];then
+		sudo iptables -A INPUT -p tcp --dport 22 -s ${blackIP}.0/24 -j REJECT
+		echo "#$(date)" >> $BLACKLIST
+		echo $blackIP >> $BLACKLIST
+		echo "Blocking $blackIP:OK"
+	else
+		echo "$blackIP has already been blocked."
+	fi
+done
+TMP="/tmp/$$.rules"
+sudo iptables-save > $TMP
+sudo cp $TMP /etc/iptables/iptables.rules

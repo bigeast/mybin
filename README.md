@@ -1,4 +1,4 @@
-##Intesting
+##Interesting
 * gcd.sh
 	* Calculate gcd(a,b) in bash
 * rot13
@@ -23,7 +23,20 @@
 	* Count the Chinese and non-Chinese chacters in an UTF-8 file.Write in bash script.
 * wcnt
 	* Same as *wcc*,but write in Perl script.
- 
+* peinfo, peinfopy
+	* View anyone's profile in [ProjectEuler](https://projecteuler.net)
+* Note
+	* Take note. OK, it's just append the content in the clipboard to a file.  **But** I'll improve it later.
+* JabSync
+	* Synchronize downloaded papaers between my laptop and PC at Lap.
+* sshblock
+	* Need to change. Will dig into it later.
+* yuv
+	* Mplayer wrapper to view YUV files.
+* gitopen
+	* open git remote url in firefox.
+	* TODO: open a specific url by its remote name.
+
 ##Bash Manual
 * varible
 	* Some special varibles in bash. 
@@ -33,6 +46,7 @@
 ##Internet
 * wlan
 * eth
+	* What is the different between **dhcpcd** and **dhclient**?
 
 ## Easy for compile
 * mgc
