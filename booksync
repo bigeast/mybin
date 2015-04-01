@@ -1,0 +1,6 @@
+#!/bin/bash
+$IP=59.66.120.122
+sshfs bigeast@$IP:/media/New/book ~/Desktop/try/xm
+rsync -azvPru /media/noname/book/ ~/Desktop/try/xm/
+rsync -azvPru ~/Desktop/try/xm/ /media/noname/book/
+#sudo umount ~/Desktop/try/xm

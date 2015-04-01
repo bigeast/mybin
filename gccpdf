@@ -1,0 +1,6 @@
+#!/bin/bash
+
+LIBDIR=/home/bigeast/Desktop/try/git/MuPDF/build/debug
+SOURCE=$1
+OUTFILE=${SOURCE%%.c*} 
+gcc -g -o $OUTFILE -Iinclude  -I/usr/include/curl  $SOURCE $LIBDIR/libmupdf.a  $LIBDIR/libfreetype.a build/debug/libjbig2dec.a  $LIBDIR/libjpeg.a build/debug/libopenjpeg.a  $LIBDIR/libz.a  $LIBDIR/libmujs.a /usr/lib/libssl.so /usr/lib/libcrypto.so -lm

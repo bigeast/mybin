@@ -1,0 +1,26 @@
+#!/bin/bash
+
+Machine=$(uname -m)
+Path=/media/Data
+if [[ "$Machine" == "x86_64" ]];then
+	IPhead="59.66.120"
+	if [ -z $1 ];then
+		echo "Usage: JabSync [last part IP]"
+	else
+		echo "PC to Laptop..."
+		rsync -avzPru -e 'ssh -p 2222' $Path/JabRef/ bigeast@$IPhead.$1:/home/bigeast/JabRef/
+		echo "...OK!"
+		echo "Laptop to PC..."
+		rsync -avzPru -e 'ssh -p 2222' bigeast@$IPhead.$1:/home/bigeast/JabRef/ $Path/JabRef/
+		echo "...OK!"
+	fi
+else
+	IPhead="166.111.66.125"
+	echo "$IPhead"
+	echo "Laptop to PC..."
+	rsync -avzPru -e 'ssh -p 8051' bigeast@$IPhead:/home/bigeast/JabRef/ $Path/JabRef/
+	echo "...OK!"
+	echo "PC to Laptop..."
+	rsync -avzPru -e 'ssh -p 8051' $Path/JabRef/ bigeast@$IPhead:/home/bigeast/JabRef/
+	echo "...OK!"
+fi

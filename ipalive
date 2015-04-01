@@ -3,7 +3,9 @@ OUTDIR="/home/bigeast/Desktop/try/ipalive"
 #BASEURL="222.25.191"
 #BASEURL="10.11.1"
 #BASEURL="121.15.171"
-BASEURL="59.66.120"
+#BASEURL="59.66.120"
+#BASEURL="166.111.65"
+BASEURL="192.168.1"
 time=`date +%F-%H:%M`
 FILENAME="$OUTDIR/$time"
 #echo $FILENAME

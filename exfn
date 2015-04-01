@@ -1,0 +1,5 @@
+#!/bin/bash
+tmpfile=$RANDOM
+mv $1 /tmp/$tmpfile
+mv $2 $1
+mv /tmp/$tmpfile $2

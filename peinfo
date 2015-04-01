@@ -1,0 +1,3 @@
+#!/bin/bash
+wget --quiet https://projecteuler.net/profile/$1.png -O /tmp/$1.png
+feh /tmp/$1.png &
