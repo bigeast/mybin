@@ -19,7 +19,7 @@ case $expand in
 	;;
 
 	'cc'|'cpp'|'c++')
-		g++ -g $1 -o $outname;
+		g++ -std=c++11 -g $1 -o $outname;
 	;;
 
 	'java') 

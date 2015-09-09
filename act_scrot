@@ -1,4 +1,6 @@
 #!/bin/bash
-activeWinLine=$(xprop -root | grep "_NET_ACTIVE_WINDOW(WINDOW)")
-activeWinId=${activeWinLine:40}
-import -window "$activeWinId" ~/Picture/Screenshots/$(date +%F_%H%M%S_%N).png
+#activeWinLine=$(xprop -root | grep "_NET_ACTIVE_WINDOW(WINDOW)")
+#activeWinId=${activeWinLine:40}
+activeWinId=$(xprop | grep "window id" | cut -d' ' -f 7)
+fileName=~/Pictures/Screenshots/$(date +%F_%H%M%S_%N).png
+import -window "$activeWinId" $fileName
